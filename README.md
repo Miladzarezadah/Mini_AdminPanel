@@ -19,7 +19,7 @@ Ensure you have the following installed on your system:
 ### Steps
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo.git
+   git clone https://github.com/Miladzarezadah/Mini_AdminPanel.git
    cd Mini_AdminPanel
    ```
 2. Install dependencies:
