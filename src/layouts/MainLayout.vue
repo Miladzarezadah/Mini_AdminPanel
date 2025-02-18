@@ -1,11 +1,32 @@
 <script setup>
-import { useQuasar } from 'quasar';
+import { Notify, useQuasar } from 'quasar';
+import { api } from 'src/boot/axios';
+import { onMounted } from 'vue';
 // import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 /////////////////////Default
 const router = useRouter();
 const route = useRoute();
 const $q = useQuasar();
+
+async function fetchUsers() {
+  try {
+    const response = await api.get('/users');
+    const users = response.data;
+    const getUserId = localStorage.getItem('id');
+    const currentUser = users.find((u) => u.id == getUserId);
+    if (!currentUser) {
+      localStorage.removeItem('id');
+      router.push('/login');
+      Notify.create({
+        type:'warning',
+        message:'Your token has expired'
+      })
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // Log Out And Disable dark mode
 function logoutFunction() {
@@ -14,6 +35,9 @@ function logoutFunction() {
   router.push('/login');
 }
 
+onMounted(() => {
+  fetchUsers();
+});
 </script>
 
 <template>
@@ -44,7 +68,7 @@ function logoutFunction() {
             @click="logoutFunction"
             v-if="route.path !== '/settings'"
           />
-          <div class="Aligning" v-if="!$q.screen.xs && route.path == '/settings' "></div>
+          <div class="Aligning" v-if="!$q.screen.xs && route.path == '/settings'"></div>
         </div>
       </q-toolbar>
     </q-header>

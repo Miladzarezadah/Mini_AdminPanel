@@ -2,11 +2,13 @@ import uuid4 from 'uuid4';
 import express from 'express';
 import cors from 'cors';
 import path from "path";
+import { fileURLToPath } from "url";
 
 
 let counter = 1;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
-const __dirname = path.resolve();
 app.use(cors());
 app.use(express.json());
 
@@ -32,12 +34,6 @@ const data = [
     Category: 'Laptop',
   },
 ];
-
-app.use(express.static(path.join(__dirname, "backend/public")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 
 ///////////////////////////Login And Users
 // Get Users
@@ -147,4 +143,12 @@ app.post('/api/createProduct', (req, res) => {
     .json({ success: true, message: 'Product added Successfully', product: newProduct });
 });
 
-app.listen(3000, () => console.log('Server is running on port 3000'));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/dist/spa", "index.html"));
+});
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
