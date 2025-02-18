@@ -2,12 +2,10 @@ import uuid4 from 'uuid4';
 import express from 'express';
 import cors from 'cors';
 import path from "path";
-import { fileURLToPath } from "url";
 
 
 let counter = 1;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.resolve();
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -143,12 +141,11 @@ app.post('/api/createProduct', (req, res) => {
     .json({ success: true, message: 'Product added Successfully', product: newProduct });
 });
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public', 'dist', 'spa')));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/dist/spa", "index.html"));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'dist', 'spa', 'index.html'));
 });
 
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 9001;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
