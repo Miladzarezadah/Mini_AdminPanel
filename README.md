@@ -1,40 +1,52 @@
-# Quasar App (mini-adminpanel)
+# Project Overview
+This project is a web-based application that includes the following features:
 
-A Quasar Project
+- **User Management**: Users can update their information.
+- **Theme Customization**: Users can switch between dark and light themes, with preferences stored per user.
+- **Product Search**: A search box is implemented to filter products efficiently.
 
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+## Project view
 
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
+## Installation
+
+### Prerequisites
+Ensure you have the following installed on your system:
+- Node.js (latest LTS version recommended)
+- npm or yarn
+- Quasar CLI (if using Quasar Framework)
+
+### Steps
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-repo.git
+   cd Mini_AdminPanel
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+   or
+   ```sh
+   yarn install
+   ```
+3. Run the backend server:
+     ```sh
+   nodemon .\backend\server.js
+   ```
+4. Run the development server:
+   ```sh
+   quasar dev
+   ```
+   or for a Vue project:
+   ```sh
+   npm run serve
+   ```
+
+## Usage
+- To switch themes, navigate to the settings page and toggle the theme.
+- User data can be updated in the profile settings.
+- Use the search box in the product section to find specific items.
 
 
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
 
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).

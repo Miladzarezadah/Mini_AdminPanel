@@ -1,14 +1,18 @@
+
 const routes = [
+  {
+    path: '/login',
+    component: () => import('layouts/LoginLayout.vue')
+  },
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
-    ]
+      { path: '', component: () => import('pages/AdminPanel.vue') },
+      { path: 'settings', component: () => import('pages/SettingPAge.vue') },
+    ],
+    meta: { requiresAuth: true }
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
