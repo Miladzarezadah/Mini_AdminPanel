@@ -111,11 +111,8 @@ const hoverClass = computed(() => {
     <div class="shadow-10 q-pa-md bodySettings">
       <div v-if="!isShowData">
         <div class="shadow-2" style="border-radius: 10px">
-          <q-banner
-            class="q-py-md UserDetails cursor-pointer"
-            :class="!$q.dark.mode ? 'hoverWhite' : 'hoverDark'"
-            @click="isShowData = true"
-          >
+          <q-banner class="q-py-md UserDetails cursor-pointer" :class="!$q.dark.mode ? 'hoverWhite' : 'hoverDark'"
+            @click="isShowData = true">
             <div class="row justify-between items-center">
               <div>
                 <div class="row items-center q-gutter-x-xs">
@@ -143,10 +140,7 @@ const hoverClass = computed(() => {
               </div>
             </div>
           </q-banner>
-          <q-banner
-            class="q-py-md shadow-1 cursor-pointer"
-            :class="!$q.dark.mode ? 'hoverWhite' : 'hoverDark'"
-          >
+          <q-banner class="q-py-md shadow-1 cursor-pointer" :class="!$q.dark.mode ? 'hoverWhite' : 'hoverDark'">
             <div class="row items-center q-gutter-x-sm" @click="logoutFunction">
               <q-icon name="logout" color="negative" size="sm" />
               <span class="text-negative" style="font-size: 17px">LogOut</span>
@@ -156,25 +150,14 @@ const hoverClass = computed(() => {
       </div>
       <div v-else>
         <div class="row items-center">
-          <q-btn
-            color="primary"
-            round
-            dense
-            flat
-            icon="chevron_left"
-            @click="
-              isShowData = false;
-              isEditData = false;
-            "
-          />
+          <q-btn color="primary" round dense flat icon="chevron_left" @click="
+            isShowData = false;
+          isEditData = false;
+          " />
           <span style="font-size: 20px">Change User Data</span>
         </div>
-        <q-banner
-          class="q-py-md shadow-1 q-mt-lg cursor-pointer"
-          style="border-radius: 5px"
-          @click="isEditData = true"
-          :class="hoverClass"
-        >
+        <q-banner class="q-py-md shadow-1 q-mt-lg cursor-pointer" style="border-radius: 5px" @click="isEditData = true"
+          :class="hoverClass">
           <div class="column justify-center">
             <div class="row justify-between items-center" :class="isEditData ? 'q-mb-md' : ''">
               <div class="row items-center q-gutter-x-xs">
@@ -182,107 +165,47 @@ const hoverClass = computed(() => {
                 <span>Change Data</span>
               </div>
               <div>
-                <q-btn
-                  color="primary"
-                  flat
-                  dense
-                  round
-                  icon="keyboard_arrow_up"
-                  @click.stop="closeEditData"
-                  v-if="isEditData"
-                />
-                <q-btn
-                  color="primary"
-                  flat
-                  dense
-                  round
-                  icon="keyboard_arrow_down"
-                  @click="isEditData = true"
-                  v-else
-                />
+                <q-btn color="primary" flat dense round icon="keyboard_arrow_up" @click.stop="closeEditData"
+                  v-if="isEditData" />
+                <q-btn color="primary" flat dense round icon="keyboard_arrow_down" @click="isEditData = true" v-else />
               </div>
             </div>
             <div v-if="isEditData">
-              <div class="row justify-around q-my-sm">
-                <q-input
-                  v-model="editUser.name"
-                  type="text"
-                  label="Name"
-                  stack-label
-                  standout="bg-primary text-white"
-                  style="width: 230px"
-                />
-                <q-input
-                  v-model="editUser.username"
-                  type="text"
-                  label="Username"
-                  stack-label
-                  standout="bg-primary text-white"
-                  style="width: 230px"
-                />
+              <div class="row justify-around q-gutter-sm q-mb-sm">
+                <q-input v-model="editUser.name" type="text" label="Name" stack-label standout="bg-primary text-white"
+                  style="width: 230px" />
+                <q-input v-model="editUser.username" type="text" label="Username" stack-label
+                  standout="bg-primary text-white" style="width: 230px" />
               </div>
               <div class="row justify-around">
-                <q-input
-                  v-model="editUser.cpassword"
-                  :type="passwordType"
-                  label="Password"
-                  stack-label
-                  standout="bg-primary text-white"
-                  style="width: 230px"
-                  :rules="[(val) => val.length >= 5 || 'Please use minimum 5 characters']"
-                >
+                <q-input v-model="editUser.cpassword" :type="passwordType" label="Password" stack-label
+                  standout="bg-primary text-white" style="width: 230px"
+                  :rules="[(val) => val.length >= 5 || 'Please use minimum 5 characters']">
                   <template v-slot:append>
-                    <q-icon
-                      name="visibility"
-                      class="cursor-pointer"
+                    <q-icon name="visibility" class="cursor-pointer"
                       @click="((passwordType = 'text'), (visibilityPassword = true))"
-                      v-if="visibilityPassword == false"
-                    />
-                    <q-icon
-                      name="visibility_off"
-                      class="cursor-pointer"
-                      @click="((passwordType = 'password'), (visibilityPassword = false))"
-                      v-else
-                    />
+                      v-if="visibilityPassword == false" />
+                    <q-icon name="visibility_off" class="cursor-pointer"
+                      @click="((passwordType = 'password'), (visibilityPassword = false))" v-else />
                   </template>
                 </q-input>
-                <q-input
-                  v-model="editUser.newpassword"
-                  :type="newPasswordType"
-                  label="NewPassword"
-                  stack-label
-                  standout="bg-primary text-white"
-                  style="width: 230px"
-                  :rules="[(val) => val.length >= 5 || 'Please use minimum 5 characters']"
-                >
+                <q-input v-model="editUser.newpassword" :type="newPasswordType" label="NewPassword" stack-label
+                  standout="bg-primary text-white" style="width: 230px"
+                  :rules="[(val) => val.length >= 5 || 'Please use minimum 5 characters']">
                   <template v-slot:append>
-                    <q-icon
-                      name="visibility"
-                      class="cursor-pointer"
+                    <q-icon name="visibility" class="cursor-pointer"
                       @click="((newPasswordType = 'text'), (visibilityNewPassword = true))"
-                      v-if="visibilityNewPassword == false"
-                    />
-                    <q-icon
-                      name="visibility_off"
-                      class="cursor-pointer"
-                      @click="((newPasswordType = 'password'), (visibilityNewPassword = false))"
-                      v-else
-                    />
+                      v-if="visibilityNewPassword == false" />
+                    <q-icon name="visibility_off" class="cursor-pointer"
+                      @click="((newPasswordType = 'password'), (visibilityNewPassword = false))" v-else />
                   </template>
                 </q-input>
               </div>
               <div class="row justify-center">
-                <q-input
-                  v-model="editUser.email"
-                  type="text"
-                  label="Email"
-                  stack-label
-                  standout="bg-primary text-white"
-                  style="width: 230px"
-                  :rules="[
+                <q-input v-model="editUser.email" type="text" label="Email" stack-label standout="bg-primary text-white"
+                  style="width: 230px" :rules="[
                     (val, rules) => rules.email(val) || 'Please enter a valid email address',
-                  ]"
-                />
+                  ]" />
               </div>
               <div class="row justify-end">
                 <q-btn color="primary" icon="save" label="save" @click="changeUserData" />
@@ -300,12 +223,15 @@ const hoverClass = computed(() => {
   width: 80vw;
   border-radius: 5px;
 }
+
 .UserDetails {
   border-radius: 10px;
 }
+
 .hoverWhite:hover {
   background: rgb(247, 247, 247);
 }
+
 .hoverDark:hover {
   background: rgb(22, 22, 22);
 }
@@ -317,6 +243,7 @@ const hoverClass = computed(() => {
   border-radius: 50%;
   cursor: pointer;
 }
+
 .whiteTheme {
   width: 20px;
   height: 20px;

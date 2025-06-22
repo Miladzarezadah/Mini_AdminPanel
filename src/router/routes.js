@@ -9,7 +9,7 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/AdminPanel.vue') },
-      { path: 'settings', component: () => import('pages/SettingPAge.vue') },
+      { path: 'settings', component: () => import('src/pages/SettingPage.vue') },
     ],
     meta: { requiresAuth: true }
   },
